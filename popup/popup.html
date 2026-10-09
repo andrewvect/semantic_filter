@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semantic Focus Filter</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">FocusFilter</span>
+          <span class="brand-tag">Groq AI</span>
+        </div>
+      </div>
+      <div class="toggle-wrapper">
+        <label class="switch" title="Toggle Semantic Filter">
+          <input type="checkbox" id="toggle-enabled">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="content">
+      <!-- Active Task Input -->
+      <section class="section task-section">
+        <div class="section-header">
+          <label for="input-task" class="section-label">
+            <span class="label-icon">🎯</span> What are you working on right now?
+          </label>
+        </div>
+        <textarea 
+          id="input-task" 
+          rows="3" 
+          placeholder="e.g. Debugging Postgres query performance or building authentication in Next.js"
+          spellcheck="false"
+        ></textarea>
+        <div class="task-presets">
+          <span class="preset-label">Quick presets:</span>
+          <button type="button" class="btn-preset" data-preset="Writing documentation and technical specifications">Docs</button>
+          <button type="button" class="btn-preset" data-preset="Debugging and fixing frontend UI bugs">Bugfix</button>
+          <button type="button" class="btn-preset" data-preset="Researching machine learning papers and implementations">ML Research</button>
+        </div>
+      </section>
+
+      <!-- Settings Accordion / Details -->
+      <section class="section settings-section">
+        <details id="details-settings">
+          <summary class="settings-summary">
+            <span>⚙️ Groq API & Configuration</span>
+            <span class="summary-indicator">▼</span>
+          </summary>
+
+          <div class="settings-body">
+            <!-- Groq API Key -->
+            <div class="form-group">
+              <div class="form-label-row">
+                <label for="input-api-key">Groq API Key</label>
+                <a href="https://console.groq.com/keys" target="_blank" class="link-external">Get Key ↗</a>
+              </div>
+              <div class="input-with-button">
+                <input 
+                  type="password" 
+                  id="input-api-key" 
+                  placeholder="gsk_..."
+                  autocomplete="off"
+                >
+                <button type="button" id="btn-toggle-key" class="btn-icon" title="Show/Hide Key">👁️</button>
+                <button type="button" id="btn-test-key" class="btn-secondary" title="Test Key">Test</button>
+              </div>
+              <div id="key-test-status" class="test-status"></div>
+            </div>
+
+            <!-- Model Selection -->
+            <div class="form-group">
+              <label for="select-model">Model</label>
+              <select id="select-model">
+                <option value="qwen/qwen3.8-27b" selected>Qwen 3.8 27B (Ultra-fast ~10ms - Recommended)</option>
+                <option value="openai/gpt-oss-20b">GPT-OSS 20B (High speed)</option>
+                <option value="openai/gpt-oss-120b">GPT-OSS 120B (Deep reasoning)</option>
+                <option value="allam-2-7b">ALLaM 2 7B</option>
+              </select>
+            </div>
+
+            <!-- Filter Strictness -->
+            <div class="form-group">
+              <label for="select-strictness">Filter Strictness</label>
+              <select id="select-strictness">
+                <option value="moderate" selected>Moderate (Recommended - blocks distractions)</option>
+                <option value="strict">Strict (Only direct task matches allowed)</option>
+                <option value="lenient">Lenient (Allows tangential topics)</option>
+              </select>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <!-- Stats Bar -->
+      <section class="section stats-section">
+        <div class="stats-row">
+          <div class="stat-card">
+            <span class="stat-num" id="stat-total">0</span>
+            <span class="stat-label">Checked</span>
+          </div>
+          <div class="stat-card stat-card-danger">
+            <span class="stat-num" id="stat-blocked">0</span>
+            <span class="stat-label">Blocked</span>
+          </div>
+        </div>
+
+        <!-- Blocked History Collapsible -->
+        <details id="details-history">
+          <summary class="history-summary">
+            <span>Recent Blocked Queries</span>
+            <span class="summary-indicator">▼</span>
+          </summary>
+          <div class="history-body">
+            <ul id="history-list" class="history-list">
+              <li class="history-empty">No blocked searches yet.</li>
+            </ul>
+            <div class="history-footer">
+              <button type="button" id="btn-clear-history" class="btn-subtle">Clear History</button>
+            </div>
+          </div>
+        </details>
+      </section>
+    </main>
+
+    <!-- Footer Action -->
+    <footer class="footer">
+      <button type="button" id="btn-save" class="btn-primary">
+        <span>Save & Apply</span>
+      </button>
+      <div id="save-toast" class="save-toast">Saved successfully!</div>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

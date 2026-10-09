@@ -1,0 +1,70 @@
+{
+  "manifest_version": 3,
+  "name": "Semantic Focus Filter for Google Search",
+  "version": "1.0.0",
+  "description": "Filters Google searches semantically against your active task using Groq AI. Automatically redirects distractions.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Semantic Focus Filter"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.google.com/*",
+        "*://*.google.co.uk/*",
+        "*://*.google.ca/*",
+        "*://*.google.de/*",
+        "*://*.google.fr/*",
+        "*://*.google.it/*",
+        "*://*.google.es/*",
+        "*://*.google.co.jp/*",
+        "*://*.google.com.au/*",
+        "*://*.google.com.br/*",
+        "*://*.google.co.in/*",
+        "*://*.google.nl/*",
+        "*://*.google.pl/*",
+        "*://*.google.se/*",
+        "*://*.google.ch/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://api.groq.com/*",
+    "*://*.google.com/*",
+    "*://*.google.co.uk/*",
+    "*://*.google.ca/*",
+    "*://*.google.de/*",
+    "*://*.google.fr/*",
+    "*://*.google.it/*",
+    "*://*.google.es/*",
+    "*://*.google.co.jp/*",
+    "*://*.google.com.au/*",
+    "*://*.google.com.br/*",
+    "*://*.google.co.in/*",
+    "*://*.google.nl/*",
+    "*://*.google.pl/*",
+    "*://*.google.se/*",
+    "*://*.google.ch/*"
+  ]
+}
