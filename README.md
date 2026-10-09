@@ -1,14 +1,26 @@
 # 🎯 FocusFilter - Semantic Focus Filter for Google Search
 
-A Google Chrome browser extension that semantically filters your Google search queries against the specific task you are working on right now. If a search query is off-topic or unrelated, it blocks the search and redirects you straight back to the [google.com](https://www.google.com) home page.
+> **A dedicated focusing and compulsive distraction removal utility** designed to break unconscious browsing loops and keep you locked into deep work.
 
-Powered by ultra-fast inference on **Groq Cloud** (`llama-3.1-8b-instant` or `llama-3.3-70b-versatile`).
+FocusFilter is a Google Chrome browser extension that semantically filters your Google search queries against the specific task you are working on right now. If a search query is off-topic, impulsive, or unrelated to your objective, it instantly blocks the search and redirects you straight back to the [google.com](https://www.google.com) home page with a reminder of your active goal.
+
+Powered by ultra-fast inference on **Groq Cloud** (`qwen/qwen3.8-27b`, `openai/gpt-oss-20b`).
+
+---
+
+## 🧠 Why FocusFilter? (Breaking Compulsive Searching)
+
+We often subconsciously open new tabs and search for tangential topics, news, entertainment, or random curiosities while in the middle of focused tasks. FocusFilter acts as a cognitive firewall:
+- **Halts Compulsive Tab Spawning**: Catches impulsive queries before they can pull you down a rabbit hole.
+- **Enforces Mindful Browsing**: Gives immediate behavioral feedback by sending you back to the home page with your original task displayed.
+- **Zero Friction for Real Work**: Relevant technical queries and task research pass through instantly (~10ms) without getting in your way.
 
 ---
 
 ## ✨ Features
 
 - **Semantic Task Verification**: Checks search queries against your current objective instead of using rigid keyword lists.
+- **Compulsion Breaker**: Intercepts impulsive, off-topic searches and redirects to `google.com` before distraction sets in.
 - **Instant Groq LPU Evaluation**: Blazing fast decisions (~150ms) using Groq's low-latency API.
 - **Smart Distraction Redirection**: Unrelated searches immediately redirect you back to `google.com` with a clear reminder of your current task.
 - **Zero-Flicker Shield**: Seamless loading overlay prevents distracting search results from flashing before evaluation finishes.
